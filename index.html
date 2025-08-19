@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customize Assemble PC - Price List</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    tr:hover { background-color: #f9f9f9; }
+    #search { margin-bottom: 15px; padding: 8px; width: 100%; max-width: 400px; }
+  </style>
+</head>
+<body>
+  <h1>💻 Customize Assemble PC - Price List</h1>
+  <input type="text" id="search" placeholder="Search component..." onkeyup="filterTable()">
+  <table id="priceTable">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Component</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Price (₹)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadCSV() {
+      const response = await fetch('price_list.csv');
+      const data = await response.text();
+      const rows = data.trim().split('\n').slice(1); // skip header
+      const tableBody = document.querySelector('#priceTable tbody');
+
+      rows.forEach(row => {
+        const cols = row.split(',');
+        const tr = document.createElement('tr');
+        cols.forEach(col => {
+          const td = document.createElement('td');
+          td.textContent = col.trim();
+          tr.appendChild(td);
+        });
+        tableBody.appendChild(tr);
+      });
+    }
+
+    function filterTable() {
+      const filter = document.getElementById('search').value.toLowerCase();
+      const rows = document.querySelectorAll('#priceTable tbody tr');
+      rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(filter) ? '' : 'none';
+      });
+    }
+
+    loadCSV();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Category,Component,Brand,Model,Price (₹)
+CPU,Processor,Intel,i5-12400F,15000
+CPU,Processor,AMD,Ryzen 5 5600,13500
+GPU,Graphics Card,NVIDIA,RTX 3060,28000
+GPU,Graphics Card,AMD,RX 6600,24000
+RAM,Memory,Corsair,Vengeance 16GB DDR4,4500
+RAM,Memory,G.Skill,Ripjaws 16GB DDR4,4300
+Storage,SSD,WD,Blue SN570 1TB,3800
+Storage,HDD,Seagate,Barracuda 2TB,4500
+PSU,Power Supply,Corsair,CX550,4200
+Case,PC Case,NZXT,H510,5200
