@@ -2,10 +2,6 @@
 A customizable PC price list and build reference. Easily compare components, track prices, and assemble your own PC configurations.
 
 
-
-Got it 👍 You want to build a **structured master list** for your price tracker CSV.
-Here’s a detailed breakdown for **PC parts inventory**:
-
 ---
 
 ## ✅ CSV Columns
