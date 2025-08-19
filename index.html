@@ -9,33 +9,32 @@
     h1 { text-align: center; }
     table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f4f4f4; cursor: pointer; }
+    th { background-color: #f4f4f4; }
     tr:hover { background-color: #f9f9f9; }
-    #controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 15px; }
-    #search, #dateFilter { padding: 8px; }
+    input[type="text"] { width: 95%; padding: 5px; margin: 3px 0; }
+    #totalBox { margin-top: 20px; font-size: 18px; font-weight: bold; text-align: right; }
   </style>
 </head>
 <body>
   <h1>💻 Customize Assemble PC - Price Tracker</h1>
 
-  <div id="controls">
-    <input type="date" id="dateFilter" onchange="filterByDate()">
-    <input type="text" id="search" placeholder="Search component..." onkeyup="filterTable()">
-  </div>
-
   <table id="priceTable">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Category</th>
-        <th>Component</th>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Price (₹)</th>
+        <th>Select</th>
+        <th>Date<br><input type="text" id="filterDate" onkeyup="filterTable()"></th>
+        <th>Shop_name<br><input type="text" id="filterShop" onkeyup="filterTable()"></th>
+        <th>Category<br><input type="text" id="filterCategory" onkeyup="filterTable()"></th>
+        <th>Component<br><input type="text" id="filterComponent" onkeyup="filterTable()"></th>
+        <th>Brand<br><input type="text" id="filterBrand" onkeyup="filterTable()"></th>
+        <th>Model<br><input type="text" id="filterModel" onkeyup="filterTable()"></th>
+        <th>Price (₹)<br><input type="text" id="filterPrice" onkeyup="filterTable()"></th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
+
+  <div id="totalBox">Total: ₹0</div>
 
   <script>
     let allRows = [];
@@ -53,32 +52,64 @@
     function renderTable(rows) {
       const tableBody = document.querySelector('#priceTable tbody');
       tableBody.innerHTML = '';
+
       rows.forEach(cols => {
         const tr = document.createElement('tr');
-        cols.forEach(col => {
+
+        // checkbox
+        const tdCheck = document.createElement('td');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.onchange = updateTotal;
+        tdCheck.appendChild(checkbox);
+        tr.appendChild(tdCheck);
+
+        // data columns
+        cols.forEach((col, i) => {
           const td = document.createElement('td');
           td.textContent = col;
           tr.appendChild(td);
         });
+
         tableBody.appendChild(tr);
       });
     }
 
     function filterTable() {
-      const filter = document.getElementById('search').value.toLowerCase();
-      const dateFilter = document.getElementById('dateFilter').value;
+      const filterDate = document.getElementById('filterDate').value.toLowerCase();
+      const filterShop = document.getElementById('filterShop').value.toLowerCase();
+      const filterCategory = document.getElementById('filterCategory').value.toLowerCase();
+      const filterComponent = document.getElementById('filterComponent').value.toLowerCase();
+      const filterBrand = document.getElementById('filterBrand').value.toLowerCase();
+      const filterModel = document.getElementById('filterModel').value.toLowerCase();
+      const filterPrice = document.getElementById('filterPrice').value.toLowerCase();
 
       const filtered = allRows.filter(row => {
-        const matchesSearch = row.join(' ').toLowerCase().includes(filter);
-        const matchesDate = dateFilter ? row[0] === dateFilter : true;
-        return matchesSearch && matchesDate;
+        return row[0].toLowerCase().includes(filterDate) &&
+               row[1].toLowerCase().includes(filterShop) &&
+               row[2].toLowerCase().includes(filterCategory) &&
+               row[3].toLowerCase().includes(filterComponent) &&
+               row[4].toLowerCase().includes(filterBrand) &&
+               row[5].toLowerCase().includes(filterModel) &&
+               row[6].toLowerCase().includes(filterPrice);
       });
 
       renderTable(filtered);
     }
 
-    function filterByDate() {
-      filterTable();
+    function updateTotal() {
+      const rows = document.querySelectorAll('#priceTable tbody tr');
+      let total = 0;
+
+      rows.forEach(row => {
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        if (checkbox && checkbox.checked) {
+          const price = parseFloat(row.cells[6].textContent.replace(/[^0-9.]/g, '')) || 0;
+          total += price;
+        }
+      });
+
+      document.getElementById('totalBox').textContent = 'Total: ₹' + total.toLocaleString();
     }
 
     loadCSV();

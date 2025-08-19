@@ -1,31 +1,42 @@
-Date,Category,Component,Brand,Model,Price (₹)
-2025-08-19,CPU,Processor,Intel,i5-12400F,15000
-2025-08-19,CPU,Processor,AMD,Ryzen 5 5600,13500
-2025-08-19,GPU,Graphics Card,NVIDIA,RTX 3060,28000
-2025-08-19,GPU,Graphics Card,AMD,RX 6600,24000
-2025-08-19,RAM,Memory,Corsair,Vengeance 16GB DDR4,4500
-2025-08-19,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,4300
-2025-08-19,Storage,SSD,WD,Blue SN570 1TB,3800
-2025-08-19,Storage,HDD,Seagate,Barracuda 2TB,4500
-2025-08-19,PSU,Power Supply,Corsair,CX550,4200
-2025-08-19,Case,PC Case,NZXT,H510,5200
-2025-08-20,CPU,Processor,Intel,i5-12400F,1500
-2025-08-20,CPU,Processor,AMD,Ryzen 5 5600,1350
-2025-08-20,GPU,Graphics Card,NVIDIA,RTX 3060,2800
-2025-08-20,GPU,Graphics Card,AMD,RX 6600,2400
-2025-08-20,RAM,Memory,Corsair,Vengeance 16GB DDR4,450
-2025-08-20,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,430
-2025-08-20,Storage,SSD,WD,Blue SN570 1TB,380
-2025-08-20,Storage,HDD,Seagate,Barracuda 2TB,450
-2025-08-20,PSU,Power Supply,Corsair,CX550,420
-2025-08-20,Case,PC Case,NZXT,H510,520
-2025-08-21,CPU,Processor,Intel,i5-12400F,150
-2025-08-21,CPU,Processor,AMD,Ryzen 5 5600,135
-2025-08-21,GPU,Graphics Card,NVIDIA,RTX 3060,280
-2025-08-21,GPU,Graphics Card,AMD,RX 6600,240
-2025-08-21,RAM,Memory,Corsair,Vengeance 16GB DDR4,45
-2025-08-21,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,43
-2025-08-21,Storage,SSD,WD,Blue SN570 1TB,38
-2025-08-21,Storage,HDD,Seagate,Barracuda 2TB,45
-2025-08-21,PSU,Power Supply,Corsair,CX550,42
-2025-08-21,Case,PC Case,NZXT,H510,52
+Date,Shop_name,Category,Component,Brand,Model,Price (₹)
+2025-08-19,Clarity,CPU,Processor,Intel,i5-12400F,15000
+2025-08-19,Clarity,CPU,Processor,AMD,Ryzen 5 5600,13500
+2025-08-19,Clarity,GPU,Graphics Card,NVIDIA,RTX 3060,28000
+2025-08-19,Clarity,GPU,Graphics Card,AMD,RX 6600,24000
+2025-08-19,Clarity,RAM,Memory,Corsair,Vengeance 16GB DDR4,4500
+2025-08-19,Clarity,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,4300
+2025-08-19,Clarity,Storage,SSD,WD,Blue SN570 1TB,3800
+2025-08-19,Clarity,Storage,HDD,Seagate,Barracuda 2TB,4500
+2025-08-19,Clarity,PSU,Power Supply,Corsair,CX550,4200
+2025-08-19,Clarity,Case,PC Case,NZXT,H510,5200
+2025-08-20,Clarity,CPU,Processor,Intel,i5-12400F,1500
+2025-08-20,Clarity,CPU,Processor,AMD,Ryzen 5 5600,1350
+2025-08-20,Clarity,GPU,Graphics Card,NVIDIA,RTX 3060,2800
+2025-08-20,Clarity,GPU,Graphics Card,AMD,RX 6600,2400
+2025-08-20,Clarity,RAM,Memory,Corsair,Vengeance 16GB DDR4,450
+2025-08-20,Clarity,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,430
+2025-08-20,Clarity,Storage,SSD,WD,Blue SN570 1TB,380
+2025-08-20,Clarity,Storage,HDD,Seagate,Barracuda 2TB,450
+2025-08-20,Clarity,PSU,Power Supply,Corsair,CX550,420
+2025-08-20,Clarity,Case,PC Case,NZXT,H510,520
+2025-08-21,Clarity,CPU,Processor,Intel,i5-12400F,150
+2025-08-21,Clarity,CPU,Processor,AMD,Ryzen 5 5600,135
+2025-08-21,Clarity,GPU,Graphics Card,NVIDIA,RTX 3060,280
+2025-08-21,Clarity,GPU,Graphics Card,AMD,RX 6600,240
+2025-08-21,Clarity,RAM,Memory,Corsair,Vengeance 16GB DDR4,45
+2025-08-21,Clarity,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,43
+2025-08-21,Clarity,Storage,SSD,WD,Blue SN570 1TB,38
+2025-08-21,Clarity,Storage,HDD,Seagate,Barracuda 2TB,45
+2025-08-21,Clarity,PSU,Power Supply,Corsair,CX550,42
+2025-08-21,7th_System,Case,PC Case,NZXT,H510,52
+2025-08-21,7th_System,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,43
+2025-08-21,7th_System,Storage,SSD,WD,Blue SN570 1TB,38
+2025-08-21,7th_System,Storage,HDD,Seagate,Barracuda 2TB,45
+2025-08-21,7th_System,PSU,Power Supply,Corsair,CX550,42
+2025-08-21,7th_System,Case,PC Case,NZXT,H510,52
+2025-08-21,Fusion_Systems,Case,PC Case,NZXT,H510,52
+2025-08-21,Fusion_Systems,RAM,Memory,G.Skill,Ripjaws 16GB DDR4,43
+2025-08-21,Fusion_Systems,Storage,SSD,WD,Blue SN570 1TB,38
+2025-08-21,Fusion_Systems,Storage,HDD,Seagate,Barracuda 2TB,45
+2025-08-21,Fusion_Systems,PSU,Power Supply,Corsair,CX550,42
+2025-08-21,Fusion_Systems,Case,PC Case,NZXT,H510,52
