@@ -13,17 +13,27 @@
     tr:hover { background-color: #f9f9f9; }
     input[type="text"] { width: 95%; padding: 5px; margin: 3px 0; }
     #totalBox { margin-top: 20px; font-size: 18px; font-weight: bold; text-align: right; }
+    .listBox { margin: 15px 0; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9; }
+    .listBox h2 { font-size: 16px; margin-top: 0; }
+    ul { margin: 5px 0; padding-left: 20px; }
   </style>
 </head>
 <body>
   <h1>💻 Customize Assemble PC - Price Tracker</h1>
+
+  <div class="listBox">
+    <h2>✅ Checked Products</h2>
+    <ul id="checkedList"></ul>
+  </div>
+
+  <div id="totalBox">Total: ₹0</div>
 
   <table id="priceTable">
     <thead>
       <tr>
         <th>Select</th>
         <th>Date<br><input type="text" id="filterDate" onkeyup="filterTable()"></th>
-        <th>Shop_name<br><input type="text" id="filterShop" onkeyup="filterTable()"></th>
+        <th>Shop<br><input type="text" id="filterShop" onkeyup="filterTable()"></th>
         <th>Category<br><input type="text" id="filterCategory" onkeyup="filterTable()"></th>
         <th>Component<br><input type="text" id="filterComponent" onkeyup="filterTable()"></th>
         <th>Brand<br><input type="text" id="filterBrand" onkeyup="filterTable()"></th>
@@ -34,17 +44,23 @@
     <tbody></tbody>
   </table>
 
-  <div id="totalBox">Total: ₹0</div>
+
+
+
+  <div class="listBox">
+    <h2>❌ Unchecked Products</h2>
+    <ul id="uncheckedList"></ul>
+  </div>
+
 
   <script>
     let allRows = [];
+    let selectedModels = new Set(); // persist selections
 
     async function loadCSV() {
       const response = await fetch('price_list.csv');
       const data = await response.text();
       const rows = data.trim().split('\n').slice(1); // skip header
-      const tableBody = document.querySelector('#priceTable tbody');
-
       allRows = rows.map(row => row.split(',').map(c => c.trim()));
       renderTable(allRows);
     }
@@ -56,16 +72,28 @@
       rows.forEach(cols => {
         const tr = document.createElement('tr');
 
+        // unique ID (date+shop+model combo)
+        const uniqueId = cols[0] + '|' + cols[1] + '|' + cols[6];
+
         // checkbox
         const tdCheck = document.createElement('td');
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.onchange = updateTotal;
+        checkbox.checked = selectedModels.has(uniqueId);
+        checkbox.onchange = () => {
+          if (checkbox.checked) {
+            selectedModels.add(uniqueId);
+          } else {
+            selectedModels.delete(uniqueId);
+          }
+          updateTotal();
+          updateLists();
+        };
         tdCheck.appendChild(checkbox);
         tr.appendChild(tdCheck);
 
         // data columns
-        cols.forEach((col, i) => {
+        cols.forEach(col => {
           const td = document.createElement('td');
           td.textContent = col;
           tr.appendChild(td);
@@ -73,6 +101,9 @@
 
         tableBody.appendChild(tr);
       });
+
+      updateTotal();
+      updateLists();
     }
 
     function filterTable() {
@@ -98,18 +129,34 @@
     }
 
     function updateTotal() {
-      const rows = document.querySelectorAll('#priceTable tbody tr');
       let total = 0;
-
-      rows.forEach(row => {
-        const checkbox = row.querySelector('input[type="checkbox"]');
-        if (checkbox && checkbox.checked) {
-          const price = parseFloat(row.cells[6].textContent.replace(/[^0-9.]/g, '')) || 0;
+      allRows.forEach(row => {
+        const uniqueId = row[0] + '|' + row[1] + '|' + row[6];
+        if (selectedModels.has(uniqueId)) {
+          const price = parseFloat(row[6].replace(/[^0-9.]/g, '')) || 0;
           total += price;
         }
       });
-
       document.getElementById('totalBox').textContent = 'Total: ₹' + total.toLocaleString();
+    }
+
+    function updateLists() {
+      const checkedList = document.getElementById('checkedList');
+      const uncheckedList = document.getElementById('uncheckedList');
+      checkedList.innerHTML = '';
+      uncheckedList.innerHTML = '';
+
+      allRows.forEach(row => {
+        const uniqueId = row[0] + '|' + row[1] + '|' + row[6];
+        const li = document.createElement('li');
+        li.textContent = row.join(' | ');
+
+        if (selectedModels.has(uniqueId)) {
+          checkedList.appendChild(li);
+        } else {
+          uncheckedList.appendChild(li);
+        }
+      });
     }
 
     loadCSV();
